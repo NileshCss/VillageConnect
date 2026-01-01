@@ -14,10 +14,9 @@ function ShoppingCheckout() {
   const { approvalURL } = useSelector((state) => state.shopOrder);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
   const [isPaymentStart, setIsPaymemntStart] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("paypal"); // Added for payment method selection
   const dispatch = useDispatch();
   const { toast } = useToast();
-
-  console.log(currentSelectedAddress, "cartItems");
 
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0
@@ -32,13 +31,12 @@ function ShoppingCheckout() {
         )
       : 0;
 
-  function handleInitiatePaypalPayment() {
+  function handleInitiatePayment() {
     if (cartItems.length === 0) {
       toast({
         title: "Your cart is empty. Please add items to proceed",
         variant: "destructive",
       });
-
       return;
     }
     if (currentSelectedAddress === null) {
@@ -46,7 +44,6 @@ function ShoppingCheckout() {
         title: "Please select one address to proceed.",
         variant: "destructive",
       });
-
       return;
     }
 
@@ -72,7 +69,7 @@ function ShoppingCheckout() {
         notes: currentSelectedAddress?.notes,
       },
       orderStatus: "pending",
-      paymentMethod: "paypal",
+      paymentMethod: paymentMethod, // Added payment method
       paymentStatus: "pending",
       totalAmount: totalCartAmount,
       orderDate: new Date(),
@@ -81,14 +78,25 @@ function ShoppingCheckout() {
       payerId: "",
     };
 
-    dispatch(createNewOrder(orderData)).then((data) => {
-      console.log(data, "sangam");
-      if (data?.payload?.success) {
-        setIsPaymemntStart(true);
-      } else {
+    if (paymentMethod === "paypal") {
+      dispatch(createNewOrder(orderData)).then((data) => {
+        if (data?.payload?.success) {
+          setIsPaymemntStart(true);
+        } else {
+          setIsPaymemntStart(false);
+        }
+      });
+    } else {
+      // Logic for INR payment
+      setIsPaymemntStart(true);
+      setTimeout(() => {
+        toast({
+          title: "Payment is done successfully!",
+          variant: "success",
+        });
         setIsPaymemntStart(false);
-      }
-    });
+      }, 2000); // Simulating payment completion
+    }
   }
 
   if (approvalURL) {
@@ -114,14 +122,25 @@ function ShoppingCheckout() {
           <div className="mt-8 space-y-4">
             <div className="flex justify-between">
               <span className="font-bold">Total</span>
-              <span className="font-bold">${totalCartAmount}</span>
+              <span className="font-bold">Rs {totalCartAmount}</span>
             </div>
           </div>
+          <div className="mt-4">
+            <select
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              className="w-full border border-gray-300 p-2 rounded"
+            >
+              <option value="paypal">Paypal</option>
+              <option value="inr">Indian Rupees (INR)</option>
+            </select>
+          </div>
           <div className="mt-4 w-full">
-            <Button onClick={handleInitiatePaypalPayment} className="w-full">
+            <Button onClick={handleInitiatePayment} className="w-full">
               {isPaymentStart
-                ? "Processing Paypal Payment..."
-                : "Checkout with Paypal"}
+                ? paymentMethod === "paypal"
+                  ? "Processing Paypal Payment..."
+                  : "Processing INR Payment..."
+                : `Checkout with ${paymentMethod === "paypal" ? "Paypal" : "INR"}`}
             </Button>
           </div>
         </div>

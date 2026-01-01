@@ -58,11 +58,11 @@ export const addProductFormElements = [
     name: "category",
     componentType: "select",
     options: [
-      { id: "men", label: "Men" },
-      { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
-      { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
+      { id: "vegetable", label: "Vegetables" },
+      { id: "oil", label: "Oil" },
+      { id: "grain", label: "Grain" },
+      { id: "egg", label: "Egg" },
+      { id: "fish", label: "Fish" },
     ],
   },
   {
@@ -70,12 +70,13 @@ export const addProductFormElements = [
     name: "brand",
     componentType: "select",
     options: [
-      { id: "nike", label: "Nike" },
-      { id: "adidas", label: "Adidas" },
-      { id: "puma", label: "Puma" },
-      { id: "levi", label: "Levi's" },
-      { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
+      { id: "vegetable", label: "Vegetables" },
+      { id: "fortune_refined_oil", label: "Fortune Refined Oil" },
+      { id: "fortune_mustard_oil", label: "Fortune Mustard Oil" },
+      { id: "Rice", label: "Local Rice" },
+      { id: "india_gate", label: "India Gate" },
+      { id: "aashirvaad_atta", label: "Aashirvaad Atta" },
+      { id: "local_atta", label: "Local Atta" },
     ],
   },
   {
@@ -102,80 +103,50 @@ export const addProductFormElements = [
 ];
 
 export const shoppingViewHeaderMenuItems = [
-  {
-    id: "home",
-    label: "Home",
-    path: "/shop/home",
-  },
-  {
-    id: "products",
-    label: "Products",
-    path: "/shop/listing",
-  },
-  {
-    id: "men",
-    label: "Men",
-    path: "/shop/listing",
-  },
-  {
-    id: "women",
-    label: "Women",
-    path: "/shop/listing",
-  },
-  {
-    id: "kids",
-    label: "Kids",
-    path: "/shop/listing",
-  },
-  {
-    id: "footwear",
-    label: "Footwear",
-    path: "/shop/listing",
-  },
-  {
-    id: "accessories",
-    label: "Accessories",
-    path: "/shop/listing",
-  },
-  {
-    id: "search",
-    label: "Search",
-    path: "/shop/search",
-  },
+  { id: "home", label: "Home", path: "/shop/home" },
+  { id: "products", label: "Products", path: "/shop/listing" },
+  { id: "vegetable", label: "Vegetable", path: "/shop/listing" },
+  { id: "oil", label: "Oil", path: "/shop/listing" },
+  { id: "grain", label: "Grain", path: "/shop/listing" },
+  { id: "egg", label: "Egg", path: "/shop/listing" },
+  { id: "fish", label: "Fish", path: "/shop/listing" },
+  { id: "search", label: "Search", path: "/shop/search" },
 ];
 
 export const categoryOptionsMap = {
-  men: "Men",
-  women: "Women",
-  kids: "Kids",
-  accessories: "Accessories",
-  footwear: "Footwear",
+  vegetable: "Vegetable", 
+  oil: "Oil",
+  grain: "Grain",
+  egg: "Egg",
+  fish: "Fish",
 };
 
 export const brandOptionsMap = {
-  nike: "Nike",
-  adidas: "Adidas",
-  puma: "Puma",
-  levi: "Levi",
-  zara: "Zara",
-  "h&m": "H&M",
+  vegetable: "Vegetables",
+  fortune_refined_oil: "Fortune Refined Oil",
+  fortune_mustard_oil: "Fortune Mustard Oil",
+  Rice:"Local Rice",
+  india_gate: "India Gate",
+  aashirvaad_atta: "Aashirvaad Atta",
+  local_atta: "Local Atta",
 };
 
 export const filterOptions = {
   category: [
-    { id: "men", label: "Men" },
-    { id: "women", label: "Women" },
-    { id: "kids", label: "Kids" },
-    { id: "accessories", label: "Accessories" },
-    { id: "footwear", label: "Footwear" },
+    { id: "vegetable", label: "Vegetables" },
+    { id: "oil", label: "Oil" },
+    { id: "grain", label: "Grain" },
+    { id: "egg", label: "Egg" },
+    { id: "fish", label: "Fish" },
   ],
   brand: [
-    { id: "nike", label: "Nike" },
-    { id: "adidas", label: "Adidas" },
-    { id: "puma", label: "Puma" },
-    { id: "levi", label: "Levi's" },
-    { id: "zara", label: "Zara" },
-    { id: "h&m", label: "H&M" },
+    { id: "vegetable", label: "Vegetables" },
+    { id: "fortune_refined_oil", label: "Fortune Refined Oil" },
+    { id: "fortune_mustard_oil", label: "Fortune Mustard Oil" },
+    { id: "Rice", label: "Local Rice"},
+    { id: "india_gate", label: "India Gate" },
+    { id: "aashirvaad_atta", label: "Aashirvaad Atta" },
+    { id: "local_atta", label: "Local Atta" },
   ],
 };
 
